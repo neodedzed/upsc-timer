@@ -1,3 +1,3 @@
 #Environment Variable and virtual environment
-venv
+venv/
 .env
