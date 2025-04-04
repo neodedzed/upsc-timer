@@ -1,9 +1,21 @@
-from fastapi import APIRouter, FastAPI
+import datetime
+from fastapi import APIRouter, Depends, FastAPI
 
-router = APIRouter()
+from database.db import get_db
+from database.models.Study_stats import Study_Time
 
-@router.get('/health')
+study = APIRouter()
+
+@study.get('/health')
 def vitals(message: str = "I'm gooood"):
     return {
-        "message": 'googbli'
+        "message": f'{message}, googbli'
     }
+
+@study.get('/sessions')
+def get_sessions(db = Depends(get_db)):
+    start = datetime.datetime.now()
+    results = db.query(Study_Time).all()
+
+    print(results, f'\nTime taken {datetime.datetime.now()-start}')
+    return results

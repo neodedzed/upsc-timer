@@ -14,5 +14,5 @@ class Study_Time(Base):
     is_running = Column(Boolean, nullable=True)
     finish_time = Column(DateTime(timezone=True), nullable=True)
 
-    def __repr__(self):
-        return f"Study booty, {self.id}:{self.created_at}:{self.is_running}:{self.finish_time}"
+    # def __repr__(self):
+    #     return f"Study booty, {self.id}:{self.created_at}:{self.is_running}:{self.finish_time}"
