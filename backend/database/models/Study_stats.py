@@ -1,9 +1,7 @@
 from sqlite3.dbapi2 import Timestamp
 from sqlalchemy import BigInteger, Boolean, Column, DateTime, func
-# from database.db import Base
+from database.db import Base
 
-from sqlalchemy.orm import declarative_base
-Base = declarative_base()
 
 class Study_Time(Base):
 

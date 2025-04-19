@@ -1,16 +1,43 @@
 <!DOCTYPE html>
-
-<html>
-    <head>
-        <title>UPSC Timer</title>
-    </head>
-    <body>
-        <header>Time spent today {{time}}</header>
-        <main>
-            <section>
-                <button>Hula button</button>
-            </section>
-        </main>
-        <footer>All rights reserved 2025. Shourya Dwivedi</footer>
-    </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>POST Project Data</title>
+</head>
+<body>
+  <h1>Create a New Project</h1>
+  <!-- Form that calls postData when submitted -->
+  <form onsubmit="postData(event)">
+    <label for="nameInput">Project Name:</label>
+    <input type="text" id="nameInput" name="name" required>
+    <button type="submit">Submit</button>
+  </form>
+</body>
 </html>
+
+<script>
+  async function postData(event){
+    event.preventDefault()
+    
+    let project_name = document.getElementById('nameInput').value
+    console.log(`THE PROJECT IS ${project_name}`)
+
+    let url = 'http://localhost:8000/projects/project/'
+
+    try {
+      let respone = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({project_name: project_name})
+      })
+
+      if(respone.ok) console.log('Nice')
+      else console.log('Issu')
+    }
+    catch(error) {
+      console.log(`Running into an Error.\n${error}`)
+    }
+  }
+</script>
